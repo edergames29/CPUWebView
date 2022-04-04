@@ -18,7 +18,8 @@ function var_para_dom(txt="Texto não expecificado", classenova) {
 
 function b64_to_utf8(str) {
     //retorna a string decodificada
-    return decodeURIComponent(escape(window.atob(str)));
+    //return decodeURIComponent(escape(window.atob(str))); //Metodo legado
+    return decodeURIComponent(window.atob(str));
 }
 
 function pegaurl(endereco) {

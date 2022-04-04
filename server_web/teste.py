@@ -42,8 +42,7 @@ def pega_saida_saida_ram():
 
 
 
-print('C
-omeçando')
+print('Começando')
 def codificar(dados):
     encoded = base64.b64encode(dados.encode('utf-8'))
     #desencoded = base64.b64decode(encoded)
