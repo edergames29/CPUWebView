@@ -1,0 +1,69 @@
+	
+	const URL_TO_FETCH = 'http://10.0.0.103:8500/admin';
+	let textob=document.getElementById('texto')
+
+	let decode = true
+	let dados = "Nada"
+
+	console.log(1)
+
+
+	function var_para_dom( txt , classenova ){
+		textob.innerHTML = txt
+		if (classenova) {
+			textob.className= classenova
+		}
+	}
+	function b64_to_utf8( str ) {
+	 return decodeURIComponent(escape(window.atob( str )));
+	}
+	function pegaurl(){
+		fetch(URL_TO_FETCH, {
+		//mode: 'no-cors' // 'cors' by default
+		})
+		.then(function(response) {
+			console.log(response)
+		  return response.text();
+		}).then(function (data) {
+			// This is the JSON from our response
+			if(decode){
+				let str = b64_to_utf8(data)
+				//console.log(str)
+				var_para_dom(str,"notification is-black")
+				setTimeout(()=>pegaurl(),2000)
+				
+				/*
+				tempo=1000
+				if(ativado == false){
+					console.log('ininciando')
+					iniciar()
+				}*/
+			}
+
+			//console.log(data);
+		})
+		.catch(function(err) { 
+		  console.error(err);
+		  var_para_dom("Erro 404","notification is-danger")
+		  console.log("refused")
+		  setTimeout(()=>pegaurl(),10000)
+		  //clearInterval(intervalo);
+		});
+		console.log(2)
+	}
+/*
+
+let intervalo;
+let tempo = 1000
+let ativado = false
+	function iniciar(parar){
+		if(ativado == false){
+			ativado = true
+			console.log('iniciou intevalo')
+			pegaurl()
+			intervalo = setInterval(()=>{
+			pegaurl()
+			},1000)
+		}
+	}
+*/
